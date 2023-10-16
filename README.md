@@ -16,3 +16,12 @@ docker-compose up -d
 To stop all docker-compose containers:
 
 docker-compose down
+
+To see all running containers use this command:
+
+docker ps
+
+To check logs of a specific container use this command:
+
+docker logs -f {container-name}
+

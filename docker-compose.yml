@@ -9,6 +9,21 @@ services:
       MYSQL_DATABASE: employeedb
     networks:
       springboot-mysql-net:
+# currently an issue we are facing is that on docker compose up the backend is loading faster than db
+# so we are restarting backend, I think there's another way to mitigate this issue, need to check docker docs
+# in theory it would be better to wait for services which have child dependencies to fully startup
+# before running dependant services
+  springboot-restful-webservices:
+    container_name: springboot-restful-webservices
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      springboot-mysql-net:
+    restart: on-failure
+
 
 networks:
   springboot-mysql-net:
